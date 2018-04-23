@@ -1,0 +1,378 @@
+#-------------------------------------#
+
+# Eclipse...
+
+#-------------------------------------#
+
+# eclipse import from Git -] Clone URI -] acquire all -] general project
+
+# Files
+
+# Team -] Add to index (aka stage file)
+
+# Team -] Remove from index (aka un stage file)
+
+# Team -] Commit / Commit & Push
+
+# Team -] Push to Upstream(aka remove)
+
+# Team -] Create new branch (and switch to)
+
+# Team -] Push branch
+
+# Team -] Swith to branch
+
+#-------------------------------------#
+
+# Intro...
+
+#-------------------------------------#
+
+# What remote repos(github) am I linked to
+
+$ git remote
+
+# Add one repos
+
+$ git remote add origin [address from github]
+
+$ git remote add fork   [forked repos address from github]
+
+$ git push origin [name]
+
+$ git push -u fork
+
+
+#-------------------------------------#
+
+# Synchronizing...
+
+#-------------------------------------#
+
+# Retrieve ALL remote changes for ALL BRANCHES and store them off to the side locally (no merge)
+
+$ git fetch
+
+# Merge fetched changes into my local active BRANCH only
+
+$ git merge
+
+# Fetch & Merge changes into my local active BRANCH only
+
+$ git pull
+
+# Pull from origin the named branch
+
+$ git pull
+
+$ git pull origin [name]
+
+#-------------------------------------#
+
+ 
+
+#-------------------------------------#
+
+# Changes...
+
+#-------------------------------------#
+
+# Show diferences between staged        [working -] staging]
+
+$ git diff
+
+$ git diff [commit1] [commit2]
+
+$ git diff --color-words
+
+# git diff staging and history          [staging -] history]. These changes would be commited with commit right now
+
+$ git diff --staged
+
+# git diff everything in working dir with history
+
+$ git diff HEAD
+
+# git diff with external tool
+
+$ git difftool --tool=sourcetree.cmd
+
+ 
+
+# git merge
+
+$ git mergetool
+
+ 
+
+# git add file (add to staging)
+
+$ git add [filename]
+
+# git add recursively (add to staging)
+
+$ git add .
+
+ 
+
+# git log (basic)
+
+$ git log
+
+$ git log --oneline
+
+# git log (last 2 commits)
+
+$ git log -2
+
+# git log (with files associated)
+
+$ git log --stat
+
+# git log (all branches)
+
+$ git log --oneline --graph --all --decorate
+
+# git log (with file changes)
+
+$ git log --patch
+
+$ git log --patch --color-words
+
+ 
+
+# reset (remove all local changes)
+
+$ git reset --hard
+
+$ git checkout [branch] -- [filename]
+
+ 
+
+#-------------------------------------#
+
+# Config...
+
+#-------------------------------------#
+
+# alias for a long commands
+
+$ git config alias.[name] "command"
+
+$ git config alias.lol "log --oneline --graph --all --decorate -10"
+
+ 
+
+#-------------------------------------#
+
+# Branching...
+
+#-------------------------------------#
+
+# Show branches
+
+$ git branch
+
+# Show all remote & local branches
+
+$ git branch -av
+
+# Create branch only (dont switch)
+
+$ git branch [name]
+
+# Checkout & switch to branch name
+
+$ git checkout -b [name]
+
+# Move branch (rename)
+
+$ git branch -m [old] [new]
+
+# Delete branch
+
+$ git branch -d [name]
+
+ 
+
+#-------------------------------------#
+
+# End of Sprint...
+
+#-------------------------------------#
+
+# Post Sprint Clean Up - Delete Story Branches
+
+$ git branch -d [name]
+
+------------
+
+# Update origin
+
+$ git push origin :[name]
+
+------------
+
+# Syncronize deletes
+
+$ git remote update origin --prune
+
+------------
+
+ 
+
+#-------------------------------------#
+
+# Cut Release..
+
+#-------------------------------------#
+
+# Working on master
+
+$ git checkout master
+
+# Merge from develop
+
+$ git merge origin/develop
+
+$ git commit -m"Merging from develop"
+
+# Strip the POM SNAPSHOT tag
+
+$ git commit -m"Stripping SNAPSHOT"
+
+$ git push origin master
+
+# Deploy this version on preview
+
+ 
+
+#-------------------------------------#
+
+# Prepare next Sprint ..
+
+#-------------------------------------#
+
+# Working on develop
+
+$ git checkout develop
+
+# Roll the pom versions to the next [VERSION]-SNAPSHOT
+
+# Commit and Push to origin
+
+$ git commit -m"Rolling poms for [VERSION]-SNAPSHOT"
+
+$ git push origin develop
+
+------------
+
+ 
+
+#-------------------------------------#
+
+#-------------------------------------#
+
+ 
+
+#-------------------------------------#
+
+# Workflows...
+
+#-------------------------------------#
+
+# Rollback a commit
+
+$ git reset --hard HEAD~1
+
+ 
+
+# Create new feature branch from develop for story and switch to branch.
+
+ 
+
+ 
+
+# Create new feature branch from develop for story and switch to branch.
+
+Checkout develop and ensure it is up to date.
+
+------------
+
+$ git checkout develop
+
+$ git pull
+
+ 
+
+# Create new feature branch from develop for story and switch to branch.
+
+$ git checkout -b [name of new branch]
+
+ 
+
+------------
+
+# Push the branch to origin.
+
+$ git push origin [name of new branch]
+
+------------
+
+ 
+
+# Story Complete - Merge Story Branch To Develop
+
+# Merge origin/develop into story branch.
+
+$ git merge origin/develop
+
+------------
+
+ 
+
+# Fix any merge conflicts and commit.
+
+# Run full build against feature branch, running all unit/integration tests (including Grunt linting and JS unit tests).
+
+# Push branch to origin
+
+$ git push origin [name of story branch]
+
+------------
+
+ 
+
+# Checkout develop
+
+$ git checkout develop
+
+------------
+
+ 
+
+# Pull latest version into develop.
+
+$ git pull
+
+------------
+
+ 
+
+# Merge story branch into develop.
+
+$ git merge [name of story branch]
+
+------------
+
+ 
+
+# Push the merge to develop.
+
+# This should always be a fast-forward merge. If any merge conflicts appear at this point then roll back the merge (git merge --abort) and merge the latest develop into the story branch again.
+
+$ git push origin develop
+
+# CI build
+
+
